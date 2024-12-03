@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Macieuls-Coffee</title>
+
+  <!-- Icon no Title da Página -->
+  <link rel="shortcut icon" type="imagex/png" href="img/icons/icon maciels coffe 2.png">
+
+  <!--Link para o framework Semantic UI CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+
+  <!-- Link css personalizado -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- Start Header -->
+  <header>
+    <div class="ui grid container" id="menu">
+      <div class="fourteen wide column">
+        <!-- Botão para mostrar todos os Produtos -->
+        <button class="ui brown button menu-item" data-tab-name="tab-all">
+          <i class="icon boxes large"></i><br />
+          Todos
+        </button>
+
+        <!-- Botão para mostrar os bolos -->
+        <button class="ui brown button menu-item" data-tab-name="tab-bolos">
+          <i class="icon birthday cake large"></i><br />
+          Bolos
+        </button>
+
+        <!-- Botão para mostrar os cafés -->
+        <button class="ui brown button menu-item" data-tab-name="tab-cafes">
+          <i class="icon coffee large"></i><br />
+          Cafés
+        </button>
+      </div>
+
+      <!-- Campo de pesquisa -->
+      <div class="two wide column right">
+        <div class="ui search" id="pesquisar-produtos">
+          <div class="ui icon input">
+            <input class="prompt" type="text" placeholder="Procurar produtos..." id="box-shearch">
+            <i class="search link icon" id="clear-search"></i>
+          </div>
+          <div class="results"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botão para adicionar Produto -->
+    <button class="ui inverted green button" id="btn-adicionarProduto">
+      <i class="plus icon"></i>
+    </button>
+  </header>
+  <!-- End Header -->
+
+  <main>
+    <div class="ui container">
+      <div class="ui tab" data-tab="tab-all">
+        <div class="ui four doubling stackable cards special" id="menu-all">
+
+        </div>
+      </div>
+
+      <div class="ui tab" data-tab="tab-bolos">
+        <div class="ui four doubling stackable cards special" id="menu-bolos">
+
+        </div>
+      </div>
+
+      <div class="ui tab" data-tab="tab-cafes">
+        <div class="ui four doubling stackable cards special" id="menu-cafes">
+
+        </div>
+      </div>
+  </main>
+
+  <!-- Formulário para Cadastro do Produto -->
+  <div class="ui modal" id="form-addProduct">
+    <i class="close icon"></i>
+    <div class="header">
+      Adicionar produto
+    </div>
+    <div class="content">
+      <div class="ui form">
+        <div class="field">
+          <!-- Campo do Nome do produto -->
+          <label>Nome:</label>
+          <input type="text" name="nome-produto" pattern="\d*" placeholder="Digite o nome do produto" id="nome-produto">
+          <br>
+          <br>
+          <!-- Campo descrição do produto -->
+          <label>Descrição:</label>
+          <input type="text" name="descricao-produto" pattern="\d*" placeholder="Digite a descrição do produto"
+            id="descricao-produto">
+          <br>
+          <br>
+          <!-- Campo preço do produto -->
+          <label>Preço:</label>
+          <div class="ui right labeled input">
+            <label for="amount" class="ui label">R$</label>
+            <input type="text" name="preco-produto" pattern="\d*" placeholder="Digite o preço do produto"
+              id="preco-produto">
+          </div>
+          <br>
+          <br>
+          <!-- Campo para selecionar a categoria do produto -->
+          <div class="field">
+            <label>Categoria:</label>
+            <select class="ui dropdown" name="categoria-produto" id="categoria-produto">
+              <!-- Placeholder -->
+              <option value="" disabled selected hidden>
+                Selecione a categoria do produto
+              </option>
+              <!-- Categoria 1 - Bolos -->
+              <option value="1">
+                Bolo
+              </option>
+              <!-- Categoria 2 - Cafés -->
+              <option value="2">
+                Cafés
+              </option>
+            </select>
+          </div>
+          <!-- Campo "Endereço da imagem" do produto -->
+          <label>Imagem:</label>
+          <input type="text" name="imagem-produto" pattern="\d*" placeholder="Digite o caminho da imagem"
+            id="imagem-produto">
+        </div>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="ui red deny button" id="btn-cancelar">
+        Cancelar
+      </div>
+      <div class="ui green right button" id="btn-adicionar">
+        Adicionar Produto
+      </div>
+    </div>
+  </div>
+  <!-- Fim Formulário Adicionar Produto -->
+
+  <!-- Formulário para Editar Produto -->
+  <div class="ui modal" id="form-editProduct">
+    <i class="close icon"></i>
+    <div class="header">
+      Editar produto
+    </div>
+    <div class="content">
+      <div class="ui form">
+        <div class="field">
+          <!-- Campo do Nome do produto -->
+          <label>idProduto:</label>
+          <input type="number" name="id-produto" pattern="\d*" placeholder="" id="upID-produto" disabled>
+          <!-- Campo do Nome do produto -->
+          <label>Nome:</label>
+          <input type="text" name="nome-produto" pattern="\d*" placeholder="Digite o nome do produto"
+            id="upNome-produto">
+          <br>
+          <br>
+          <!-- Campo descrição do produto -->
+          <label>Descrição:</label>
+          <input type="text" name="descricao-produto" pattern="\d*" placeholder="Digite a descrição do produto"
+            id="upDescricao-produto">
+          <br>
+          <br>
+          <!-- Campo preço do produto -->
+          <label>Preço:</label>
+          <div class="ui right labeled input">
+            <label for="amount" class="ui label">R$</label>
+            <input type="text" name="preco-produto" pattern="\d*" placeholder="Digite o preço do produto"
+              id="upPreco-produto">
+          </div>
+          <br>
+          <br>
+          <!-- Campo para selecionar a categoria do produto -->
+          <div class="field">
+            <label>Categoria:</label>
+            <select class="ui dropdown" name="categoria-produto" id="upCategoria-produto">
+              <!-- Placeholder -->
+              <option value="" disabled selected hidden>
+                Selecione a categoria do produto
+              </option>
+              <!-- Categoria 1 - Bolos -->
+              <option value="1">
+                <i class="icon icon birthday cake"></i>
+                Bolo
+              </option>
+              <!-- Categoria 2 - Cafés -->
+              <option value="2">
+                Cafés
+              </option>
+            </select>
+          </div>
+          <!-- Campo "Endereço da imagem" do produto -->
+          <label>Imagem:</label>
+          <input type="text" name="imagem-produto" pattern="\d*" placeholder="Digite o caminho da imagem"
+            id="upImagem-produto">
+        </div>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="ui red deny button" id="btn-cancelar">
+        Cancelar
+      </div>
+      <div class="ui green right button" id="button-edit">
+        Salvar Edição
+      </div>
+    </div>
+  </div>
+  <!-- Fim Formulário Edição Produto -->
+
+  <!-- Script que chama o JQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+  <!-- Script que chama jQuery Mask Plugin -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+  <!-- Script que chama o JavaScript do Framework Semantic UI -->
+  <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+
+  <!-- Script que chama o JavaScript personalizado -->
+  <script src="js/index.js"></script>
+
+  <!-- Script que chama a biblioteca SweetAlert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+
+</html>
